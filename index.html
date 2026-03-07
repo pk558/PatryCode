@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      property="og:image"
+      content="https://patrycode.net/some_files/og-image-1200x630.png"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="some_files/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="some_files/favicon-16x16.png"
+    />
+    <link rel="apple-touch-icon" href="some_files/apple-touch-icon.png" />
+    <link rel="manifest" href="some_files/site.webmanifest" />
+    <title>PatryCode</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Patrycode",
+        "url": "https://patrycode.net",
+        "sameAs": []
+      }
+    </script>
+    <script lang="javascript">
+      document.addEventListener("DOMContentLoaded", () => {
+        const _ = "hello";
+        const d_ = `${window.location.domain}`;
+        const _w = "net";
+
+        email.href = `mailto:${_}@${d_}.${_w}`;
+      });
+
+      document.addEventListener("click", (ev) => bubbleSound());
+      document.addEventListener("click", (ev) => regenerateLogo());
+
+      function bubbleSound() {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(600, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.08);
+
+        gain.gain.setValueAtTime(0.4, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + 0.08);
+      }
+
+      function regenerateLogo() {
+        let randomNumber1 = Clamp(
+          Math.abs(Math.floor((Math.random() * 10) / 3)),
+          0,
+          2,
+        );
+        let randomNumber2 = Clamp(
+          Math.abs(Math.floor((Math.random() * 10) / 3)),
+          0,
+          2,
+        );
+
+        const numberToCSSClassName = new Map();
+
+        numberToCSSClassName.set(0, "left");
+        numberToCSSClassName.set(1, "center");
+        numberToCSSClassName.set(2, "right");
+
+        const logoHolder = document.getElementsByClassName("logo")[0] ?? null;
+
+        if (logoHolder == null) return;
+
+        logoHolder.style.backgroundPositionX =
+          numberToCSSClassName.get(randomNumber1);
+        logoHolder.style.backgroundPositionY =
+          numberToCSSClassName.get(randomNumber2);
+      }
+
+      function Clamp(value, min, max) {
+        if (value == null || isNaN(Number(value))) return value;
+
+        return Math.max(min, Math.min(value, max));
+      }
+    </script>
+
+    <style type="text/css">
+      * {
+        margin: 0px;
+        padding: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      #section-header,
+      #section-body {
+        width: 100%;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #section-body {
+        flex-direction: row;
+      }
+
+      .logo-holder {
+        width: 102.4px;
+        height: 101.4px;
+        padding: 17px;
+      }
+
+      .logo {
+        width: 100%;
+        height: 100%;
+        background-image: url("images/logo_random.png");
+        background-size: 300% 300%;
+        background-position-x: center;
+        background-position-y: top;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="section-header">
+      <div class="logo-holder">
+        <div class="logo"></div>
+      </div>
+    </section>
+    <section id="section-body">
+      <ul>
+        <a id="email">
+          <li>E-mail</li>
+        </a>
+        <a
+          href="https://github.com/pk558"
+          target="_blank"
+          rel="noopener noreferrer me"
+          id="github"
+        >
+          <li>Github</li>
+        </a>
+        <a
+          href="https://linkedin.com/in/patryk-kubacki-0601b6161/"
+          target="_blank"
+          rel="noopener noreferrer me"
+          id="github"
+        >
+          <li>LinkedIn</li>
+        </a>
+      </ul>
+    </section>
+  </body>
+</html>
