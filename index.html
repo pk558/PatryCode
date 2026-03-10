@@ -106,9 +106,10 @@
       }
 
       #section-header,
-      #section-body {
+      #section-body,
+      #section-info {
         width: 100%;
-        height: 50vh;
+        height: 33vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -119,6 +120,11 @@
         flex-direction: row;
       }
 
+      .info-holder {
+        margin: 30px;
+        max-width: 400px;
+      }
+      
       .logo-holder {
         width: 102.4px;
         height: 101.4px;
@@ -140,6 +146,11 @@
     <section id="section-header">
       <div class="logo-holder">
         <div class="logo"></div>
+      </div>
+    </section>
+    <section id="section-info">
+      <div class="info-holder">
+        <p>Cześć, jestem Patryk i świadcze usługi programistyczne w szerokim zakresie językowym i technologicznym <b>(C#, C++, .NET, Javascript / Typescript, Python, Lua, MySQL, MongoDB)</b>, skontaktuj się ze mną i przedstaw mi swój pomysł.</p>
       </div>
     </section>
     <section id="section-body">
