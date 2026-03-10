@@ -34,10 +34,8 @@
     </script>
     <script lang="javascript">
       document.addEventListener("DOMContentLoaded", () => {
-        const _ = "hello";
-        const d_ = `${window.location.host}`;
-
-        email.href = `mailto:${_}@${d_}`;
+        setupEmail();
+        translateInfo();
       });
 
       document.addEventListener("click", (ev) => bubbleSound());
@@ -89,6 +87,33 @@
           numberToCSSClassName.get(randomNumber1);
         logoHolder.style.backgroundPositionY =
           numberToCSSClassName.get(randomNumber2);
+      }
+
+      function setupEmail() {
+        const _ = "hello";
+        const d_ = `${window.location.host}`;
+        
+        const email = document.getElementById('email');
+
+        if(email == null)
+          return;
+
+        email.href = `mailto:${_}@${d_}`;
+      }
+
+      function translateInfo() {
+        const plText = "Cześć, jestem Patryk i świadcze usługi programistyczne w szerokim zakresie językowym i technologicznym <b>(C#, C++, .NET, Javascript / Typescript, Python, Lua, MySQL, MongoDB)</b>, skontaktuj się ze mną i przedstaw mi swój pomysł.";
+        const enText = "Hi, I'm Patryk and I provide programming services in a wide range of languages and technologies <b>(C#, C++, .NET, Javascript/Typescript, Python, Lua, MySQL, MongoDB)</b>. Contact me and tell me about your idea.";
+      
+        const info = document.getElementById("info");
+
+        if(info == null)
+          return;
+
+        if(navigator.language.split('-')[0] === 'pl')
+          info.innerHTML = plText;
+        else
+          info.innerHTML = enText;
       }
 
       function Clamp(value, min, max) {
@@ -150,7 +175,7 @@
     </section>
     <section id="section-info">
       <div class="info-holder">
-        <p>Cześć, jestem Patryk i świadcze usługi programistyczne w szerokim zakresie językowym i technologicznym <b>(C#, C++, .NET, Javascript / Typescript, Python, Lua, MySQL, MongoDB)</b>, skontaktuj się ze mną i przedstaw mi swój pomysł.</p>
+        <p id="info"></p>
       </div>
     </section>
     <section id="section-body">
