@@ -35,10 +35,9 @@
     <script lang="javascript">
       document.addEventListener("DOMContentLoaded", () => {
         const _ = "hello";
-        const d_ = `${window.location.domain}`;
-        const _w = "net";
+        const d_ = `${window.location.host}`;
 
-        email.href = `mailto:${_}@${d_}.${_w}`;
+        email.href = `mailto:${_}@${d_}`;
       });
 
       document.addEventListener("click", (ev) => bubbleSound());
