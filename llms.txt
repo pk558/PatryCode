@@ -1,0 +1,19 @@
+# PatryCode
+
+> Portfolio of Patryk Kubacki, a full-stack developer building web applications, websites and API integrations. Available in Polish and English.
+
+## Website content
+
+- [Polish overview](https://patrycode.net/index.md): developer introduction, projects and contact links.
+- [English overview](https://patrycode.net/en/index.md): the same website content in English.
+
+## Projects
+
+- [SEPE](https://sepe.patrycode.net/prezentacja/): time tracking, leave requests and team communication.
+- [Śląski Ikarus](https://rezerwacje.simkol.pl/): vintage bus ticket booking and QR validation.
+
+## Contact and profiles
+
+- [Contact](https://patrycode.net/#kontakt): reveal the email address on the website.
+- [GitHub](https://github.com/pk558): developer profile.
+- [LinkedIn](https://linkedin.com/in/patryk-kubacki-0601b6161/): professional profile.

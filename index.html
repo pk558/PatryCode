@@ -1,217 +1,67 @@
 <!doctype html>
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Tworzenie nowoczesnych aplikacji webowych - PatryCode."
-    />
-    <meta
-      property="og:image"
-      content="https://patrycode.net/some_files/og-image-1200x630.png"
-    />
-
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="some_files/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="some_files/favicon-16x16.png"
-    />
-    <link rel="apple-touch-icon" href="some_files/apple-touch-icon.png" />
-    <link rel="manifest" href="site.webmanifest" />
-    <title>PatryCode</title>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Patrycode",
-        "url": "https://patrycode.net",
-        "sameAs": []
-      }
-    </script>
-    <script lang="javascript">
-      document.addEventListener("DOMContentLoaded", () => {
-        setupEmail();
-        translateInfo();
-      });
-
-      document.addEventListener("click", (ev) => bubbleSound());
-      document.addEventListener("click", (ev) => regenerateLogo());
-
-      function bubbleSound() {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(600, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.08);
-
-        gain.gain.setValueAtTime(0.4, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start();
-        osc.stop(ctx.currentTime + 0.08);
-      }
-
-      function regenerateLogo() {
-        let randomNumber1 = Clamp(
-          Math.abs(Math.floor((Math.random() * 10) / 3)),
-          0,
-          2,
-        );
-        let randomNumber2 = Clamp(
-          Math.abs(Math.floor((Math.random() * 10) / 3)),
-          0,
-          2,
-        );
-
-        const numberToCSSClassName = new Map();
-
-        numberToCSSClassName.set(0, "left");
-        numberToCSSClassName.set(1, "center");
-        numberToCSSClassName.set(2, "right");
-
-        const logoHolder = document.getElementsByClassName("logo")[0] ?? null;
-
-        if (logoHolder == null) return;
-
-        logoHolder.style.backgroundPositionX =
-          numberToCSSClassName.get(randomNumber1);
-        logoHolder.style.backgroundPositionY =
-          numberToCSSClassName.get(randomNumber2);
-      }
-
-      function setupEmail() {
-        const _ = "hello";
-        const d_ = `${window.location.host}`;
-
-        const email = document.getElementById("email");
-
-        if (email == null) return;
-
-        email.href = `mailto:${_}@${d_}`;
-      }
-
-      function translateInfo() {
-        const plText =
-          "Cześć, jestem Patryk i świadcze usługi programistyczne w szerokim zakresie językowym i technologicznym <b>(C#, C++, .NET, Javascript / Typescript, Python, Lua, MySQL, MongoDB)</b>, skontaktuj się ze mną i przedstaw mi swój pomysł.";
-        const enText =
-          "Hi, I'm Patryk and I provide programming services in a wide range of languages and technologies <b>(C#, C++, .NET, Javascript/Typescript, Python, Lua, MySQL, MongoDB)</b>. Contact me and tell me about your idea.";
-
-        const info = document.getElementById("info");
-
-        if (info == null) return;
-
-        if (navigator.language.split("-")[0] === "pl") info.innerHTML = plText;
-        else info.innerHTML = enText;
-      }
-
-      function Clamp(value, min, max) {
-        if (value == null || isNaN(Number(value))) return value;
-
-        return Math.max(min, Math.min(value, max));
-      }
-    </script>
-
-    <style type="text/css">
-      * {
-        margin: 0px;
-        padding: 0px;
-        font-family: Arial, Helvetica, sans-serif;
-      }
-
-      li {
-        margin: 15px;
-        padding: 15px;
-        font-size: 24px;
-      }
-
-      #section-header,
-      #section-body,
-      #section-info {
-        width: 100%;
-        height: 33vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      #section-body {
-        flex-direction: row;
-      }
-
-      .info-holder {
-        margin: 30px;
-        max-width: 400px;
-      }
-
-      .logo-holder {
-        width: 102.4px;
-        height: 101.4px;
-        padding: 17px;
-      }
-
-      .logo {
-        width: 100%;
-        height: 100%;
-        background-image: url("images/logo_random.webp");
-        background-size: 300% 300%;
-        background-position-x: center;
-        background-position-y: top;
-        background-repeat: no-repeat;
-      }
-    </style>
-  </head>
-  <body>
-    <section id="section-header" role="banner">
-      <div class="logo-holder">
-        <div class="logo"></div>
-      </div>
-    </section>
-    <section id="section-info" role="main">
-      <div class="info-holder">
-        <p id="info"></p>
-      </div>
-    </section>
-    <section id="section-body" role="contentinfo">
-      <ul>
-        <li>
-          <a id="email"> E-mail </a>
-        </li>
-        <li>
-          <a
-            href="https://github.com/pk558"
-            target="_blank"
-            rel="noopener noreferrer me"
-            id="github"
-          >
-            Github
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://linkedin.com/in/patryk-kubacki-0601b6161/"
-            target="_blank"
-            rel="noopener noreferrer me"
-            id="github"
-          >
-            LinkedIn
-          </a>
-        </li>
-      </ul>
-    </section>
-  </body>
-</html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PatryCode — aplikacje webowe i strony internetowe</title>
+<meta name="description" content="Patryk Kubacki, programista full-stack. Tworzę aplikacje webowe, strony internetowe i integracje API. Zobacz SEPE, Śląski Ikarus i skontaktuj się ze mną.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#ff5c28">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://patrycode.net/">
+<link rel="alternate" hreflang="pl" href="https://patrycode.net/">
+<link rel="alternate" hreflang="en" href="https://patrycode.net/en/">
+<link rel="alternate" hreflang="x-default" href="https://patrycode.net/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PatryCode">
+<meta property="og:title" content="PatryCode — aplikacje webowe i strony internetowe">
+<meta property="og:description" content="Patryk Kubacki, programista full-stack. Tworzę aplikacje webowe, strony internetowe i integracje API. Zobacz SEPE, Śląski Ikarus i skontaktuj się ze mną.">
+<meta property="og:url" content="https://patrycode.net/">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://patrycode.net/assets/images/social-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PatryCode">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PatryCode — aplikacje webowe i strony internetowe">
+<meta name="twitter:description" content="Patryk Kubacki, programista full-stack. Tworzę aplikacje webowe, strony internetowe i integracje API. Zobacz SEPE, Śląski Ikarus i skontaktuj się ze mną.">
+<meta name="twitter:image" content="https://patrycode.net/assets/images/social-cover.png">
+<meta name="twitter:image:alt" content="PatryCode">
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="alternate" type="text/markdown" href="index.md">
+<link rel="describedby" type="text/plain" href="llms.txt">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/script.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://patrycode.net/#patryk", "name": "Patryk Kubacki", "url": "https://patrycode.net/", "jobTitle": "Full-stack developer", "sameAs": ["https://github.com/pk558", "https://linkedin.com/in/patryk-kubacki-0601b6161/"]}, {"@type": "WebSite", "@id": "https://patrycode.net/#website", "name": "PatryCode", "url": "https://patrycode.net/", "inLanguage": ["pl", "en"], "creator": {"@id": "https://patrycode.net/#patryk"}}, {"@type": "WebPage", "@id": "https://patrycode.net/#webpage", "url": "https://patrycode.net/", "name": "PatryCode — aplikacje webowe i strony internetowe", "description": "Patryk Kubacki, programista full-stack. Tworzę aplikacje webowe, strony internetowe i integracje API. Zobacz SEPE, Śląski Ikarus i skontaktuj się ze mną.", "inLanguage": "pl", "isPartOf": {"@id": "https://patrycode.net/#website"}, "about": {"@id": "https://patrycode.net/#patryk"}}]}</script>
+</head>
+<body>
+<a href="#main" class="skip">Przejdź do treści</a>
+<header class="header wrap"><a class="brand" href="#start" aria-label="PatryCode — początek"><span>PatryCode</span></a><nav aria-label="Menu główne"><a href="#projekty">Projekty</a><a href="#kontakt" class="nav-contact">Kontakt</a></nav><div class="language-switch" aria-label="Wybierz język"><a href="./" lang="pl" aria-current="page">PL</a><a href="en/" lang="en">EN</a></div></header>
+<nav class="section-indicator" aria-label="Sekcje strony"><a href="#start" aria-label="Powitanie" title="Powitanie" aria-current="location"><span></span></a><a href="#projekty" aria-label="Projekty" title="Projekty"><span></span></a><a href="#kontakt" aria-label="Kontakt" title="Kontakt"><span></span></a></nav>
+<main id="main">
+<section id="start" class="hero wrap page-section" aria-labelledby="hero-title">
+<h1 id="hero-title">Cześć, jestem Patryk.<br><span>Stwórzmy coś razem.</span></h1>
+<div class="hero-bottom"><p>Jestem programistą full-stack. Tworzę aplikacje webowe,<br class="desktop-break"> strony internetowe i integracje API.</p><a class="button dark-button" href="#kontakt">Napisz do mnie</a></div>
+</section>
+<section id="projekty" class="projects wrap page-section" aria-labelledby="work-title">
+<h2 id="work-title" class="reveal">Projekty</h2>
+<article class="project featured reveal">
+<div class="project-copy"><h3>SEPE</h3><p>Aplikacja do ewidencji czasu pracy, obsługi wniosków urlopowych i komunikacji w zespole.</p><a class="project-link" href="https://sepe.patrycode.net/prezentacja/" target="_blank" rel="noopener noreferrer" aria-label="Otwórz landing SEPE" title="Otwórz landing SEPE"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></a></div>
+<div class="sepe-scene" role="img" aria-label="Poglądowy widok interfejsu SEPE: czas pracy, wnioski urlopowe i zespół"><div class="app-preview" aria-hidden="true"><div class="app-top"><strong>sepe<span>•</span></strong></div><div class="app-body"><aside><b>Przegląd</b><span>Czas pracy</span><span>Wnioski</span><span>Zespół</span></aside><div class="app-content"><h4>Czas pracy</h4><div class="time-card"><span>Rozpoczęcie pracy</span><strong>08:00</strong><div class="time-progress"><i></i></div></div><div class="app-row"><span>Wnioski urlopowe</span></div><div class="preview-lines"><i></i><i></i></div></div></div></div></div>
+</article>
+<article class="project featured ikarus-project reveal">
+<div class="project-copy"><h3>Śląski Ikarus</h3><p>System rezerwacji biletów na przejazdy zabytkowymi autobusami. Wybór wydarzenia, zakup biletu i kontrola kodu QR.</p><a class="project-link" href="https://rezerwacje.simkol.pl/" target="_blank" rel="noopener noreferrer" aria-label="Otwórz stronę rezerwacji Śląskiego Ikarusa" title="Otwórz stronę rezerwacji Śląskiego Ikarusa"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></a></div>
+<a class="ikarus-scene" href="https://rezerwacje.simkol.pl/" target="_blank" rel="noopener noreferrer" aria-label="Otwórz stronę Śląskiego Ikarusa"><img src="assets/images/ikarus-logo.png" alt="Śląski Ikarus" width="800" height="800"></a>
+</article>
+</section>
+<section class="contact page-section" id="kontakt"><div class="contact-heading wrap"><h2>Kontakt</h2><div class="contact-bottom"><button class="email-reveal" id="reveal-email" type="button">Pokaż adres e-mail</button><a class="email" id="email-address" hidden></a><button class="copy-button" id="copy-email" type="button" hidden>Kopiuj e-mail</button><span id="copy-status" role="status" aria-live="polite"></span></div><noscript><p>Włącz JavaScript, aby odsłonić e-mail, lub skontaktuj się przez LinkedIn.</p></noscript></div><div class="contact-art wrap" aria-hidden="true"><canvas id="pointer-art"></canvas></div><div class="contact-base wrap"><div class="social-links"><a href="https://github.com/pk558" target="_blank" rel="noopener noreferrer">GitHub<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></a><a href="https://linkedin.com/in/patryk-kubacki-0601b6161/" target="_blank" rel="noopener noreferrer">LinkedIn<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg></a></div><footer class="footer-row"><a class="brand" href="#start">PatryCode</a><span>© 2026 Patryk Kubacki</span><span class="ai-credit">made with ai</span></footer></div></section>
+</main>
+</body></html>
